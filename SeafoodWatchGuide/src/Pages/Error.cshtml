@@ -1,0 +1,18 @@
+﻿x
+@{
+    ViewBag.Title = "Error";
+}
+
+<!-- Layout for error page -->
+<h1>Oh No! Looks like our site is having issues. Please check back in a couple of minutes</h1>
+
+<div>
+    <a asp-page="/Index" class="btn btn-primary">Click here to navigate back to home page</a>
+</div>
+
+@if (Model.ShowRequestId)
+{
+    <p>
+        <br /><strong>Request ID:</strong> <code>@Model.RequestId</code>
+    </p>
+}

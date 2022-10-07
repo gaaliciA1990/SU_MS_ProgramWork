@@ -1,0 +1,16 @@
+.container-fluid{
+    padding: 60px;
+   /* background-color: gold;*/
+}
+
+
+.metaverse-heading{
+    padding-left: 20px;
+    padding-bottom: 20px;
+    color: #0b343c;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    background-color: #104b57;
+}

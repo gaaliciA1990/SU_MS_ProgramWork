@@ -1,0 +1,22 @@
+.container-fluid{
+    padding: 80px 80px 120px 80px;
+   /* background-color: black; */
+}
+
+.popular-metaverses{
+    color: #0b343c;
+}
+
+.table-heading{
+    padding-bottom: 20px;
+}
+
+.table-color-1{
+    color: #0b343c;
+}
+.table-color{
+    color: #16697a;
+}
+.table{
+    background-color: #ffffff;
+}

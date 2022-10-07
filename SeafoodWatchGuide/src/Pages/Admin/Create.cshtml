@@ -1,0 +1,122 @@
+﻿@page
+@using ContosoCrafts.WebSite.Components
+@using ContosoCrafts.WebSite.Models;
+@using ContosoCrafts.WebSite.RatingEnums
+@model CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#btnAddSource').click(function (e) {
+                var numOfSources = $("#sources").children().length;
+                $("#sources").append(`<li><input class="form-control" name="Product.Sources[${numOfSources++}]" value=""/></li>`);
+                document.getElementById("btnAddSource").hidden = (numOfSources >= 5) ? true : false;
+                document.getElementById("btnRemoveSource").hidden = (numOfSources > 0) ? false : true;
+            });
+            $('#btnRemoveSource').click(function (e) {
+                $('#sources').children().last().remove();
+                var numOfSources = $("#sources").children().length;
+                document.getElementById("btnAddSource").hidden = (numOfSources >= 5) ? true : false;
+                document.getElementById("btnRemoveSource").hidden = (numOfSources > 0) ? false : true;
+            });
+        });
+    </script>
+}
+
+<h1>Create a New Record</h1>
+
+<!--This is the form for entering the data for a new Seafood Record. All fields are editable except for Product ID-->
+@using (Html.BeginForm())
+{
+    <div asp-validation-summary="All"></div>
+
+    
+
+    <div class="form-group">
+        <input hidden class="form-control" value="@System.Guid.NewGuid().ToString()" type="text" required asp-for="Product.Id">
+    </div>
+
+    <div class="form-group">
+        <label>Title</label>
+        <input class="form-control" type="text" required asp-for="Product.Title">
+        <span asp-validation-for="Product.Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Region</label>
+        <!-- Automatically parse from already available list of regions supported-->
+        @{
+            var temp = Model.ProductService.GetAllRegions();
+
+            foreach (string region in temp)
+            {
+                <div class="form-check">
+                    <input required asp-for="Product.Region" type="radio" value="@region">
+                    <label class="form-check-label">
+                        @region
+                    </label>
+                </div>
+            }
+        }
+        <span asp-validation-for="Product.Region" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Fish Rating</label>
+        @{
+            var rating = Enum.GetValues(typeof(ProductRating));
+
+            foreach (int i in rating)
+            {
+                // Do not show the Unknown rating on the form
+                if (i == 0)
+                {
+                    continue;
+                }
+                <div class="form-check">
+                    <input required asp-for="Product.Rating" type="radio" value="@i">
+                    <label class="form-check-label" for="gridRadios1">
+                        @EnumExtensions.ConvertToString((ProductRating)i)
+                    </label>
+                </div>
+            }
+        }
+        <span asp-validation-for="Product.Rating" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Sources</label>
+        <br />
+        <ul id="sources">
+            @if (Model.Product != null && Model.Product.Sources != null)
+            {
+                @for (var i = 0; i < Model.Product.Sources.Count; i++)
+                {
+                    <li><input class="form-control" type="text" name="Product.Sources[@i]" value="@Model.Product.Sources[i]"></li>
+                }
+            }
+        </ul>
+        <button id="btnAddSource" type="button" class="btn btn-secondary" style="">+ Add a source</button>
+        <button id="btnRemoveSource" type="button" class='btn btn-danger' @((Model.Product != null && Model.Product.Sources != null)?"":"hidden")>- Remove source</button>
+        <span asp-validation-for="Product.Sources" class="text-danger"></span>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Description</label>
+        <input class="form-control" type="text" required asp-for="Product.Description">
+        <span asp-validation-for="Product.Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Image (Accepted formats are: .jpg, .jpeg, .png, .gif)</label>
+        <input class="form-control" type="url" pattern="https://.*" size="30" required asp-for="Product.Image" placeholder="https://example.com/fish-image.jpg"/>
+        <span asp-validation-for="Product.Image" class="text-danger"></span>
+    </div>
+
+    <input class="btn btn-primary" type="submit" id="Submit">
+}

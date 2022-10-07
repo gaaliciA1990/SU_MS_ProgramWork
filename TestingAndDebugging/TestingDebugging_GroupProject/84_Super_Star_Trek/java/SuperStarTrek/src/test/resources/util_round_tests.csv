@@ -1,0 +1,3 @@
+value, places, expectedResults
+20.66325854, 6, 20.663259
+20.6, 0, 21

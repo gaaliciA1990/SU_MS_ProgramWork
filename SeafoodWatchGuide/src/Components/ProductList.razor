@@ -1,0 +1,188 @@
+@using ContosoCrafts.WebSite.Models
+@using ContosoCrafts.WebSite.Services
+@using ContosoCrafts.WebSite.RatingEnums
+@using Microsoft.AspNetCore.Components.Web
+@inject JsonFileProductService ProductService
+<!-- This section of HTML is the formatting for how the products are displayed in their
+    individual cards. This can be updated to work with new data and rearranged if needed,
+    but this data can also be bucketed into contained within a page.
+    -->
+@{
+    var regionData = ProductService.GetRegionData(region);
+    if (!String.IsNullOrEmpty(search))
+    {
+        regionData = regionData.Where(m => m.Title.ToLower().Contains(search.ToLower()));
+    }
+}
+
+@foreach (ProductRating ev in Enum.GetValues(typeof(ProductRating)))
+{
+    var collapse = SetRatingStringCollapse(ev);
+
+    if(collapse == null)
+    {
+        continue;
+    }
+
+    var ratingData = regionData.Where(m => m.Rating.Equals(ev));
+
+    <div class="region-container" id="div_@ev.ToString()">
+        <button type="button" class="region-block @(ev + "_color")" data-toggle="collapse" aria-expanded="false" href=#@collapse>
+            <h2 class="region_container_text">@EnumExtensions.ConvertToString(ev) (@ratingData.Count())</h2>
+        </button>
+
+        <div id=@collapse class="collapse">
+            <div class="card-columns">
+                @foreach (var product in ratingData)
+                {
+                    <div class="card">
+                        <div class="card-img" style="background-image: url('@product.Image');">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@product.Title</h5>
+                            @{
+                                string showSource = "";
+                                int i = 0;
+                                foreach (string source in product.Sources)
+                                {
+                                    if (i > 1)
+                                    {
+                                        showSource += "...";
+                                        break;
+                                    }
+                                    showSource += source;
+                                    if (i < product.Sources.Count() - 1)
+                                    {
+                                        showSource += ", ";
+                                    }
+
+                                    i++;
+                                }
+                                <h5 class="card-title">Source(s): @showSource</h5>
+                            }
+                            <h5 class="card-header">.</h5>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">
+                                <button id="@(product.Id)_more_info" @onclick="(e => SelectProduct(product.Id))" data-toggle="modal" data-target="#productModal" class="btn btn-primary">More Info</button>
+                            </small>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+
+@if (selectedProduct != null)
+{
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productTitle">@selectedProduct.Title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-img" style="background-image: url('@selectedProduct.Image');">
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">@selectedProduct.Description</p>
+                            @{
+                                string showSource = "";
+                                int i = 0;
+                                foreach (string source in selectedProduct.Sources)
+                                {
+                                    showSource += source;
+                                    if (i < selectedProduct.Sources.Count() - 1)
+                                    {
+                                        showSource += ", ";
+                                    }
+
+                                    i++;
+                                }
+                                <p class="card-text">Source(s): @showSource</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    @if (selectedProduct.Rating == ProductRating.BEST_CHOICE)
+                    {
+                        <div class="card-footer bg-success text-white">@EnumExtensions.ConvertToString(selectedProduct.Rating)</div>
+                    }
+                    else if (selectedProduct.Rating == ProductRating.GOOD_ALTERNATIVE)
+                    {
+                        <div class="card-footer bg-warning text-white">@EnumExtensions.ConvertToString(selectedProduct.Rating)</div>
+                    }
+                    else
+                    {
+                        <div class="card-footer bg-danger text-white">@EnumExtensions.ConvertToString(selectedProduct.Rating)</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- C# code for implementing functionality-->
+@code
+{
+    //Holds the selected product
+    ProductModel selectedProduct;
+
+    //Holds selected product's id
+    string selectedProductId;
+
+    // This code selects a product to display with a click and gets the ratings for that given product
+    void SelectProduct(string productId)
+    {
+        selectedProductId = productId;
+        selectedProduct = ProductService.GetAllData().First(x => x.Id == productId);
+    }
+
+    //Holds name of selected region
+    [Parameter]
+    public string region { get; set; }
+
+    //Holds search string
+    [Parameter]
+    public string search { get; set; }
+
+    /// <summary>
+    /// This will assign a collapse value for each fish rating so we can use this for 
+    /// grouping the fishe into each container
+    /// </summary>
+    /// <param name="rating"></param>
+    /// <returns></returns>
+    public string SetRatingStringCollapse(ProductRating rating)
+    {
+        var collapse = "";
+
+        switch (rating)
+        {
+            case ProductRating.UNKNOWN:
+                return null;
+
+            case ProductRating.BEST_CHOICE:
+                collapse = "collapse1";
+                break;
+
+            case ProductRating.GOOD_ALTERNATIVE:
+                collapse = "collapse2";
+                break;
+
+            case ProductRating.AVOID:
+                collapse = "collapse3";
+
+                break;
+        }
+        return collapse;
+    }
+}

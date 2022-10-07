@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{53A4D59A-F0C5-49B3-849C-278EB254253A}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Game.UWP</RootNamespace>
+    <AssemblyName>Game.UWP</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>portable</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>portable</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>portable</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="aboutGame_background.png" />
+    <Content Include="about_game.png" />
+    <Content Include="action_move.png" />
+    <Content Include="action_skip.png" />
+    <Content Include="alpaca1.png" />
+    <Content Include="alpaca1_animation.GIF" />
+    <Content Include="alpaca2.png" />
+    <Content Include="alpaca2_animation.GIF" />
+    <Content Include="alpaca3.png" />
+    <Content Include="alpaca3_animation.GIF" />
+    <Content Include="alpacaclanlogo.png" />
+    <Content Include="Assets\gameTile.png" />
+    <Content Include="Assets\LargeTile.scale-100.png" />
+    <Content Include="Assets\LargeTile.scale-125.png" />
+    <Content Include="Assets\LargeTile.scale-150.png" />
+    <Content Include="Assets\LargeTile.scale-200.png" />
+    <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\SmallTile.scale-100.png" />
+    <Content Include="Assets\SmallTile.scale-125.png" />
+    <Content Include="Assets\SmallTile.scale-150.png" />
+    <Content Include="Assets\SmallTile.scale-200.png" />
+    <Content Include="Assets\SmallTile.scale-400.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\splash_screen.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-125.png" />
+    <Content Include="Assets\StoreLogo.scale-150.png" />
+    <Content Include="Assets\StoreLogo.scale-200.png" />
+    <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="attackpopup.png" />
+    <Content Include="autobattle.png" />
+    <Content Include="autoBattle_animation.gif" />
+    <Content Include="autobattle_background.png" />
+    <Content Include="basic_boots.png" />
+    <Content Include="basic_earring.png" />
+    <Content Include="basic_earring2.png" />
+    <Content Include="basic_earring3.png" />
+    <Content Include="basic_hat.png" />
+    <Content Include="basic_hat2.png" />
+    <Content Include="basic_necklace.png" />
+    <Content Include="basic_necklace2.png" />
+    <Content Include="basic_scarf.png" />
+    <Content Include="basic_shield.png" />
+    <Content Include="basic_shield2.png" />
+    <Content Include="basic_shield3.png" />
+    <Content Include="basic_slippers.png" />
+    <Content Include="basic_socks.png" />
+    <Content Include="basic_sombrero.png" />
+    <Content Include="basic_stick.png" />
+    <Content Include="basic_sword.png" />
+    <Content Include="basic_torch.png" />
+    <Content Include="battleBackground.jpg" />
+    <Content Include="battleboard.png" />
+    <Content Include="battleLoadingScreens_background.png" />
+    <Content Include="battle_background1.png" />
+    <Content Include="battle_background2.png" />
+    <Content Include="battle_background3.png" />
+    <Content Include="battle_background4.png" />
+    <Content Include="button_continegame.png" />
+    <Content Include="button_start.png" />
+    <Content Include="button_startgame.png" />
+    <Content Include="caverns.png" />
+    <Content Include="characters.png" />
+    <Content Include="characterSelect_background.png" />
+    <Content Include="d10.png" />
+    <Content Include="d20_2.png" />
+    <Content Include="button_delete.png" />
+    <Content Include="delete.png" />
+    <Content Include="explosion.gif" />
+    <Content Include="gamePage_background.png" />
+    <Content Include="gameTile.png" />
+    <Content Include="greatLeader_animation.GIF" />
+    <Content Include="healthicon.png" />
+    <Content Include="icon_back.png" />
+    <Content Include="icon_dice.png" />
+    <Content Include="icon_edit.png" />
+    <Content Include="exit.png" />
+    <Content Include="homebackground.jpg" />
+    <Content Include="icon_add.png" />
+    <Content Include="icon_cancel.png" />
+    <Content Include="icon_delete.png" />
+    <Content Include="icon_home.png" />
+    <Content Include="icon_new.png" />
+    <Content Include="icon_random.png" />
+    <Content Include="icon_save.png" />
+    <Content Include="items.png" />
+    <Content Include="leftarrow.png" />
+    <Content Include="llama1.png" />
+    <Content Include="llama1_animation.GIF" />
+    <Content Include="llama2.png" />
+    <Content Include="llama2_animation.GIF" />
+    <Content Include="llama3.png" />
+    <Content Include="llama3_animation.GIF" />
+    <Content Include="llamaclanlogo.png" />
+    <Content Include="logo.png" />
+    <Content Include="misspopup.png" />
+    <Content Include="monster.png" />
+    <Content Include="monster1.png" />
+    <Content Include="monster1_animation.GIF" />
+    <Content Include="monster2.png" />
+    <Content Include="monster2_animation.GIF" />
+    <Content Include="monster3.png" />
+    <Content Include="monster3_animation.GIF" />
+    <Content Include="monster4.png" />
+    <Content Include="monster4_animation.GIF" />
+    <Content Include="monster5.png" />
+    <Content Include="monster5_animation.GIF" />
+    <Content Include="monster6.png" />
+    <Content Include="monster6_animation.GIF" />
+    <Content Include="monsters.png" />
+    <Content Include="movepopup.png" />
+    <Content Include="obstacle1.png" />
+    <Content Include="obstacle2.png" />
+    <Content Include="obstacle3.png" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="question-mark-icon.png" />
+    <Content Include="rightarrow.png" />
+    <Content Include="roundOver_background.png" />
+    <Content Include="score.png" />
+    <Content Include="scorePage_background.png" />
+    <Content Include="slider_thumbnail.png" />
+    <Content Include="splash_screen.png" />
+    <Content Include="startgame.png" />
+    <Content Include="unique_andeancuff.png" />
+    <Content Include="unique_andeanhat.png" />
+    <Content Include="unique_andeanscarf.png" />
+    <Content Include="unique_bronzemace.png" />
+    <Content Include="unique_bronzespear.png" />
+    <Content Include="unique_curvedbow.png" />
+    <Content Include="unique_fedora.png" />
+    <Content Include="unique_incanscarf.png" />
+    <Content Include="unique_puregoldenanklet.png" />
+    <Content Include="unique_puregoldring.png" />
+    <Content Include="unique_puresilveranklet.png" />
+    <Content Include="unique_tumiring.png" />
+    <Content Include="vicuna1.png" />
+    <Content Include="vicuna1_animation.GIF" />
+    <Content Include="vicuna2.png" />
+    <Content Include="vicuna2_animation.GIF" />
+    <Content Include="vicuna3.png" />
+    <Content Include="vicuna3_animation.GIF" />
+    <Content Include="vicunaclanlogo.png" />
+    <Content Include="village.png" />
+    <Content Include="villagePage_background.png" />
+    <Content Include="wings.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="sqlite-net-pcl">
+      <Version>1.8.116</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.13" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Game\Game.csproj">
+      <Project>{9F9BC8E7-A053-4B6C-AB1C-F590BCA732B1}</Project>
+      <Name>Game</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+</Project>

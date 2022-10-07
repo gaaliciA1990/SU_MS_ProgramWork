@@ -1,0 +1,135 @@
+﻿@page
+@using ContosoCrafts.WebSite.Components
+@using ContosoCrafts.WebSite.Models
+@using ContosoCrafts.WebSite.Services
+@using Microsoft.AspNetCore.Components.Web
+@using ContosoCrafts.WebSite.RatingEnums
+@inject JsonFileProductService ProductService
+@model AdminModel
+@{
+    ViewData["Title"] = "Admin";
+    var regions = Model.ProductService.GetAllRegions();
+    var fishRatings = Enum.GetValues(typeof(ProductRating));
+}
+<!--
+This is the Index page where all records from the Seafoods.JSON file are display and
+can be edited with CRUD implementation
+-->
+<link rel="stylesheet" href="~/css/site.css" type="text/css">
+
+<head>
+</head>
+<body>
+    <div class="container">
+        <!--Table header and description-->
+        <div class="text-body">
+            <div class="d-flex flex-row justify-content-center align-items-center">
+                <h2>Welcome to the Admin Page!</h2>
+            </div>
+            <div class="d-flex flex-row justify-content-center align-items-center">
+                <p>Admins can manage the Seafood lists here. New records can be added, records can be updated or deleted<br /></p>
+            </div>
+        </div>
+        <!--The Create button for adding a new record of Seafood-->
+        <a class="btn btn-primary" asp-page-handler="Create"> Create</a>
+
+        <form id="wow" method="post"></form>
+
+        <!--Table to display all of the seafood records-->
+        <table id="adminTable" class="table">
+            <div class="row">
+                <div class="col">
+                    <input id="search" form="wow" type="text" asp-for="@Model.Filter.Name" placeholder="Find fish..." />
+                    <button class="btn btn-success" form="wow" type="submit">Search</button>
+                    <button class="btn btn-danger" form="wow" type="submit" onclick="$('#search').val('');$('#region').val('');$('#rating').val('@ProductRating.UNKNOWN')">Clear</button>
+                </div>
+            </div>
+            <thead>
+                <tr>
+                    <th>Title</th>
+
+                    <th>Source(s)</th>
+
+                    <th>
+                        <select id="region" class="custom-select" form="wow" asp-for="@Model.Filter.Region" onchange="this.form.submit()">
+                            <option value="@null">Regions</option>
+                            @{
+                                foreach (string region in regions)
+                                {
+                                    <option value="@region">@region</option>
+                                }
+                            }
+                        </select>
+                    </th>
+                    <th>
+                        <select id="rating" class="custom-select" form="wow" asp-for="@Model.Filter.Rating" onchange="this.form.submit()">
+                            <option value="@null">Ratings</option>
+                            @{
+                                var rating = Enum.GetValues(typeof(ProductRating));
+
+                                foreach (int i in rating)
+                                {
+                                    // Do not show the Unknown rating on the form
+                                    if (i == 0)
+                                    {
+                                        continue;
+                                    }
+                                    <option value="@i">@EnumExtensions.ConvertToString((ProductRating)i)</option>
+                                }
+                            }
+                        </select>
+                    </th>
+                    <th>Decription</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model.Products)
+                {
+                <tr>
+                    <!--<td>Html.DisplayFor(modelItem => item.Id)</td> - commenting out this code as we don't need to show users the ID-->
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+
+                    <td>
+                        @item.GetSources()
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Region)
+                    </td>
+                    <td>
+                        @EnumExtensions.ConvertToString((item.Rating))
+                    </td>
+                    <td>
+                        <div class="truncate">
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </div>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" asp-page="Read" asp-route-id="@(item.Id)">Edit</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+<script src="_framework/blazor.server.js"></script>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var adminTable = $('#adminTable').DataTable({
+                ordering: false,
+                searching: false,
+                pagingType: "numbers",
+                iDisplayLength: 15,
+                bLengthChange: false,
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+}

@@ -1,0 +1,2 @@
+- Run "npm install" to get all the dependencies
+- Use this command to run tests: npm run test

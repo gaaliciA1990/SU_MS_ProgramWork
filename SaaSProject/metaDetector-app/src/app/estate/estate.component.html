@@ -1,0 +1,38 @@
+
+<div>
+    <h1>Estate {{this.estateId}}</h1>
+    <br />
+
+    <div class="row d-flex justify-content-center" >
+        
+        <a (click)="goBack()" class="btn btn-primary" type="button" id="back-button"><-</a>
+
+        <div class="col-xs-6"  *ngFor="let tile of tiles">
+
+            <div class="card" style="width: 18rem;" >
+                <img class="card-img-top" src="{{getTileMap(tile.tileId)}}" alt="Card image cap">
+
+                <div class="card-body">
+                    <h5 class="card-title">Parcel ({{tile.tileId}})</h5>
+                    
+                </div>
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Type: {{tile.type}}</li>
+                    <li class="list-group-item">Owner: {{tile.owner}}</li>
+                </ul>
+
+                <div class="card-body">
+                    <a href="{{goToMarketPlace(tile.tokenId)}}" class="card-link" target="_blank">Go to {{tile.tileId}} in Decentraland</a>
+                </div>
+            </div>
+            
+            <br />
+
+        </div>
+
+    </div>
+  
+
+
+</div>

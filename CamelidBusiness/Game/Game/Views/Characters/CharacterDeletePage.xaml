@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Game.Views.CharacterDeletePage"
+             Style="{StaticResource CRUDiStyle}"
+             Title="{Binding Title}">
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackLayout Orientation="Horizontal"
+                         Grid.Row="0">
+                <Label FontSize="Large"
+                       Text="{Binding Data.Name, StringFormat= 'Delete: {0:G}?'}"
+                       Style="{StaticResource HeaderStyle}" />
+            </StackLayout>
+
+            <Grid x:Name="FormLayoutGrid"
+                  Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0"
+                      Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0"
+                          HorizontalOptions="FillAndExpand">
+                        <Frame Style="{StaticResource CrudiTopFrame}"
+                               Grid.Row="0"
+                               Grid.Column="0">
+                            <Label x:Name="ClanPicker"
+                                   Text="{Binding Data.Clan}"
+                                   Style="{StaticResource CrudiLabelStyle}" />
+                        </Frame>
+
+                        <Frame Style="{StaticResource CrudiTopFrame}"
+                               Grid.Row="0"
+                               Grid.Column="1">
+                            <Label Text="{Binding Data.Name}"
+                                   Style="{StaticResource CrudiLabelStyle}" />
+                        </Frame>
+
+                    </Grid>
+
+                    <Image Grid.Row="1"
+                           x:Name="ImageLabel"
+                           Source="{Binding Data.ImageURI}"
+                           Style="{StaticResource CrudiImageStyle}" />
+
+                    <Frame Style="{StaticResource CrudiBottomFrame}"
+                           Grid.Row="2">
+                        <Label Text="{Binding Data.Description}"
+                               Style="{StaticResource CrudiLabelStyle}"
+                               TextColor="{StaticResource SecondaryTextColor}" />
+                    </Frame>
+                </Grid>
+
+                <StackLayout Grid.Row="0"
+                             Grid.Column="1"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand"
+                             Padding="10"
+                             Style="{StaticResource OuterBoxStack}">
+                    <Grid HorizontalOptions="Center"
+                          VerticalOptions="FillAndExpand"
+                          Padding="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--LEVEL-->
+                        <Frame  Grid.Row="0"
+                                Grid.Column="0"
+                                Style="{StaticResource AttributeFrame}">
+                            <Label Text="LVL"
+                                   Style="{StaticResource LabelStyle}" />
+                        </Frame>
+
+                        <StackLayout Grid.Row="0"
+                                     Grid.Column="1"
+                                     Orientation="Horizontal"
+                                     VerticalOptions="Center">
+                            <Grid Grid.Row="0"
+                                  Grid.Column="0"
+                                  HorizontalOptions="FillAndExpand"
+                                  VerticalOptions="CenterAndExpand">
+                                <ProgressBar x:Name="LevelBar"
+                                             Style="{StaticResource CrudiProgressBar}" />
+                                <Label Text="{Binding Data.Level , StringFormat='  {0:G}'}"
+                                       Style="{StaticResource ProgressBarLabel}" />
+                            </Grid>
+                        </StackLayout>
+
+                        <!--ATTACK-->
+                        <Frame  Grid.Row="1"
+                                Grid.Column="0"
+                                Style="{StaticResource AttributeFrame}">
+                            <Label Text="ATK"
+                                   Style="{StaticResource LabelStyle}" />
+                        </Frame>
+                        <StackLayout Grid.Row="1"
+                                     Grid.Column="1"
+                                     Orientation="Horizontal"
+                                     VerticalOptions="Center">
+
+                            <Grid Grid.Row="0"
+                                  Grid.Column="0"
+                                  HorizontalOptions="FillAndExpand"
+                                  VerticalOptions="CenterAndExpand">
+                                <ProgressBar x:Name="AttackBar"
+                                             Style="{StaticResource CrudiProgressBar}" />
+                                <Label Text="{Binding Data.GetAttackTotal , StringFormat='  {0:G}'}"
+                                       Style="{StaticResource ProgressBarLabel}"/>
+                            </Grid>
+                        </StackLayout>
+
+                        <!--DEFENSE-->
+                        <Frame  Grid.Row="2"
+                                Grid.Column="0"
+                                Style="{StaticResource AttributeFrame}">
+                            <Label Text="DEF"
+                                   Style="{StaticResource LabelStyle}" />
+                        </Frame>
+                        <StackLayout Grid.Row="2"
+                                     Grid.Column="1"
+                                     Orientation="Horizontal"
+                                     VerticalOptions="Center">
+                            <Grid Grid.Row="0"
+                                  Grid.Column="0"
+                                  HorizontalOptions="FillAndExpand"
+                                  VerticalOptions="CenterAndExpand">
+                                <ProgressBar x:Name="DefenseBar"
+                                             Style="{StaticResource CrudiProgressBar}" />
+                                <Label Text="{Binding Data.GetDefenseTotal , StringFormat='  {0:G}'}"
+                                       Style="{StaticResource ProgressBarLabel}" />
+                            </Grid>
+                        </StackLayout>
+
+                        <!--SPEED-->
+                        <Frame Grid.Row="3"
+                               Grid.Column="0"
+                               Style="{StaticResource AttributeFrame}">
+                            <Label Text="SPD"
+                                   Style="{StaticResource LabelStyle}" />
+                        </Frame>
+                        <StackLayout Grid.Row="3"
+                                     Grid.Column="1"
+                                     Orientation="Horizontal"
+                                     VerticalOptions="Center">
+                            <Grid Grid.Row="0"
+                                  Grid.Column="0"
+                                  HorizontalOptions="FillAndExpand"
+                                  VerticalOptions="CenterAndExpand">
+                                <ProgressBar x:Name="SpeedBar"
+                                             Style="{StaticResource CrudiProgressBar}" />
+                                <Label Text="{Binding Data.GetSpeedTotal , StringFormat='  {0:G}'}"
+                                       Style="{StaticResource ProgressBarLabel}" />
+                            </Grid>
+                        </StackLayout>
+
+                        <!--RANGE-->
+                        <Frame Grid.Row="4"
+                               Grid.Column="0"
+                               Style="{StaticResource AttributeFrame}">
+                            <Label Text="RNG"
+                                   Style="{StaticResource LabelStyle}" />
+                        </Frame>
+                        <StackLayout Grid.Row="4"
+                                     Grid.Column="1"
+                                     Orientation="Horizontal"
+                                     VerticalOptions="Center">
+                            <Grid Grid.Row="0"
+                                  Grid.Column="0"
+                                  HorizontalOptions="FillAndExpand"
+                                  VerticalOptions="CenterAndExpand">
+                                <ProgressBar x:Name="RangeBar"
+                                             Style="{StaticResource CrudiProgressBar}" />
+                                <Label x:Name="RangeValue"
+                                       Text="{Binding Data.GetItemRange , StringFormat='  {0:G}'}"
+                                       Style="{StaticResource ProgressBarLabel}" />
+                            </Grid>
+                        </StackLayout>
+
+                        <!-- Max Health Value-->
+                        <StackLayout Orientation="Horizontal"
+                                     Grid.Row="5"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="2">
+
+                            <Frame Style="{StaticResource AttributeFrame}">
+                                <Label Text="HP"
+                                       Style="{StaticResource LabelStyle}" />
+                            </Frame>
+
+                            <Label x:Name="MaxHealthValue"
+                                   Text="{Binding Data.MaxHealth, StringFormat= '{0:G}'}"
+                                   Style="{StaticResource ValueStyle}" />
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+
+                <StackLayout Grid.Row="2"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="2"
+                             x:Name="ItemBox"
+                             Style="{StaticResource ItemBox}">
+                </StackLayout>
+
+                <AbsoluteLayout Padding="0"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand"
+                                Grid.ColumnSpan="2">
+                    <Frame x:Name="Sheet"
+                           Grid.Row="1"
+                           Grid.ColumnSpan="2"
+                           Style="{StaticResource DeletePopupFrame}">
+                        <Grid>
+                            <Label Text="Deleted characters cannot be recovered. Delete this character?"
+                                   Style="{StaticResource DeleteMessageLabel}"
+                                   Grid.Row="0"
+                                   Grid.ColumnSpan="2" />
+                            <ImageButton x:Name="DeleteButton"
+                                         Source="button_delete.png"
+                                         Grid.Row="1"
+                                         Grid.Column="0"
+                                         Clicked="Delete_Clicked"
+                                         Style="{StaticResource DeleteButtonStyle}" />
+                            <ImageButton x:Name="CancelButton"
+                                         Source="icon_cancel.png"
+                                         Grid.Row="1"
+                                         Grid.Column="1"
+                                         Clicked="Cancel_Clicked"
+                                         Style="{StaticResource DeleteButtonStyle}" />
+                        </Grid>
+                    </Frame>
+                </AbsoluteLayout>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

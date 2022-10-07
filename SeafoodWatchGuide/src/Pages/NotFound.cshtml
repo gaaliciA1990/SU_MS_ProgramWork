@@ -1,0 +1,21 @@
+﻿@page
+@model ContosoCrafts.WebSite.Pages.NotFoundModel
+@{
+}
+
+@{
+    ViewData["Title"] = "Not Found";
+}
+
+<h1>Oh Shoot! Page Not Found</h1>
+
+<div>
+    <a asp-page="/Index" class="btn btn-primary">Click here to navigate back to home page </a>
+</div>
+
+@if (Model.ShowRequestId)
+{
+    <p>
+        <br /><strong>Request ID:</strong> <code>@Model.RequestId</code>
+    </p>
+}

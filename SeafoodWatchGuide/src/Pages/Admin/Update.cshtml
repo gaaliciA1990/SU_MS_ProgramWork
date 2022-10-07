@@ -1,0 +1,151 @@
+﻿@page
+@using ContosoCrafts.WebSite.Components
+@using ContosoCrafts.WebSite.Models;
+@using ContosoCrafts.WebSite.RatingEnums
+@model UpdateModel
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Update</h1>
+
+<!--
+    This is the Update page to view the details of a selected record from the Read page. Here the user will find values
+    that they are allowed to update. Static values from creation that are expected to not be modified by users are
+    read only.
+-->
+
+@if (@Model.errorOccurred == true)
+{
+    <div>
+        <h1> <b> Error: Item not found. <br>Click 'Okay' to get redirected back to Administrator page.</b> </h1>
+        <a asp-page="./Admin" class="btn btn-primary"> Okay </a>
+    </div>
+}
+
+@if (Model.errorOccurred == false)
+{
+    @using (Html.BeginForm())
+    {
+        <div asp-validation-summary="All"></div>
+
+        @Html.HiddenFor(m => m.Product.Id)
+
+        <div class="form-group">
+            <label>Title</label>
+            <input class="form-control" type="text" required asp-for="Product.Title">
+        </div>
+
+        <div class="form-group">
+            <label>Region</label>
+            <input class="form-control" type="text" asp-for="Product.Region" readonly>
+        </div>
+
+        <div class="form-group">
+            <label>Fish Rating</label>
+            @{
+                var rating = Enum.GetValues(typeof(ProductRating));
+                var currentRating = (int)@Model.Product.Rating;
+
+                foreach (int i in rating)
+                {
+
+                    // Do not show the Unknown rating on the form
+                    if (i == 0)
+                    {
+                        continue;
+                    }
+                    <div class="form-check">
+                        @if (i == currentRating)
+                        {
+                            <input required asp-for="Product.Rating" type="radio" value="@i" checked>
+                        }
+                        else
+                        {
+                            <input required asp-for="Product.Rating" type="radio" value="@i">
+                        }
+                        <label class="form-check-label" for="gridRadios1">
+                            @EnumExtensions.ConvertToString((ProductRating)i)
+                        </label>
+                    </div>
+                }
+            }
+            <span asp-validation-for="Product.Rating" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Sources</label>
+            <br />
+            <ul id="sources">
+                @if (Model.Product.Sources != null && Model.Product.Sources.Count > 0)
+                {
+                    @for (var i = 0; i < Model.Product.Sources.Count; i++)
+                    {
+                        <li><input class="form-control" type="text" name="Product.Sources[@i]" value="@Model.Product.Sources[i]"></li>
+                    }
+                }
+            </ul>
+            <br />
+            @if (Model.Product.Sources != null && Model.Product.Sources.Count >= 4)
+            {
+                <button hidden id="btnAddSource" type="button" class="btn btn-secondary">+ Add a source</button>
+            }
+            else
+            {
+                <button id="btnAddSource" type="button" class="btn btn-secondary">+ Add a source</button>
+            }
+            @if (Model.Product.Sources != null)
+            {
+                <button id="btnRemoveSource" type="button" class="btn btn-danger">- Remove source</button>
+            }
+            else
+            {
+                <button hidden id="btnRemoveSource" type="button" class="btn btn-danger">- Remove source</button>
+            }
+            <span asp-validation-for="Product.Sources" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea class="form-control" required asp-for="Product.Description"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Image</label>
+            <input class="form-control" data-toggle="popover-hover" type="url" pattern="https://.*" size="30" required asp-for="Product.Image">
+        </div>
+
+        <a class="btn btn-primary" asp-page="Read" asp-route-id="@(Model.Product.Id)">Cancel</a>
+        <input class="btn btn-success" type="submit" id="Submit">
+    }
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover-hover"]').popover({
+                html: true,
+                trigger: 'hover',
+                placement: 'bottom',
+                content: function () {
+                    if ($(this).val().match('^(?:[a-z]+:)?//'))
+                        return '<img src="' + $(this).val() + '";/>';
+                    return '<img src="' + $(this).val().replace(/^([^/])/, '/$1') + '";/>';
+                }
+            });
+            $(document).ready(function () {
+                $('#btnAddSource').click(function (e) {
+                    var numOfSources = $("#sources").children().length;
+                    $("#sources").append(`<li><input class="form-control" name="Product.Sources[${numOfSources++}]" value=""/></li>`);
+                    document.getElementById("btnAddSource").hidden = (numOfSources >= 5) ? true : false;
+                    document.getElementById("btnRemoveSource").hidden = (numOfSources > 0) ? false : true;
+                });
+                $('#btnRemoveSource').click(function (e) {
+                    $('#sources').children().last().remove();
+                    var numOfSources = $("#sources").children().length;
+                    document.getElementById("btnAddSource").hidden = (numOfSources >= 5) ? true : false;
+                    document.getElementById("btnRemoveSource").hidden = (numOfSources > 0) ? false : true;
+                });
+            });
+        });</script>
+}

@@ -1,0 +1,76 @@
+﻿@page
+@using ContosoCrafts.WebSite.Components
+@model ReadModel
+@{
+    ViewData["Title"] = "Item";
+}
+
+<!--
+    This is the read page to view the details of a selected record from the Admin page. Here the user will find an Update and Delete button
+-->
+<link rel="stylesheet" href="~/css/site.css" type="text/css">
+
+<h1>Item Details</h1>
+
+@if (@Model.errorOccurred == true)
+{
+    <div>
+        <h1> <b> Error: Item not found. <br>Click 'Okay' to get redirected back to Administrator page.</b> </h1>
+        <a asp-page="./Admin" class="btn btn-primary"> Okay </a>
+    </div>
+}
+
+@if (Model.errorOccurred == false)
+{
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(m => m.Product.Id)
+
+        <div class="form-group">
+            <label>Title</label>
+            <input class="form-control" type="text" asp-for="Product.Title" readonly>
+        </div>
+
+        <div class="form-group">
+            <label>Region</label>
+            <input class="form-control" type="text" asp-for="Product.Region" readonly>
+        </div>
+
+        <div class="form-group">
+            @if (Model.Product.Sources != null && Model.Product.Sources.Count > 0)
+            {
+                <label>Sources</label>
+                <ul>
+                    @foreach (string source in Model.Product.Sources)
+                    {
+                        <li><input class="form-control" type="text" value="@source" readonly></li>
+                    }
+                </ul>
+            }
+        </div>
+
+        <div class="form-group">
+            <label>Rating</label>
+            <input class="form-control" type="text" asp-for="Product.Rating" readonly>
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea class="form-control" asp-for="Product.Description" readonly></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Image</label> <br>
+            <!--<input class="form-control" type="text" asp-for="Product.Image" readonly> -->
+            <div class="readwrapper">
+                <img id="imgcontainer" src="@Model.Product.Image">
+            </div>
+        </div>
+
+        <!-- User will be redirected to the Delete page to make confirm the delete action-->
+        <a asp-page-handler="Delete" asp-route-id="@(Model.Product.Id)" class="btn btn-primary">Delete</a>
+
+        <!-- User will be redirected to the Update page to make their edits and Save-->
+        <a asp-page-handler="Update" asp-route-id="@(Model.Product.Id)" class="btn btn-primary">Update</a>
+    }
+}

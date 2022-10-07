@@ -1,0 +1,13 @@
+<div class="container fluid"> 
+    <div *ngIf="isLoggedIn == false">
+        <h2 class="header">Hey there, let's try to log you in!</h2>
+    <button class="button" (click)="login()">Login with SSO</button>
+    </div>
+    
+    <div *ngIf="isLoggedIn">
+        <button class="logout-button" (click)="logout()">Logout</button>
+        <app-user-profile></app-user-profile>
+    </div>
+</div>
+
+

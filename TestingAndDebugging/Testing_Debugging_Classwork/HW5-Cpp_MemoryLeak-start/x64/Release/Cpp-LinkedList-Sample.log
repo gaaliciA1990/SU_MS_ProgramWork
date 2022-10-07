@@ -1,0 +1,6 @@
+﻿  Generating code
+  Previous IOBJ not found, fall back to full compilation.
+C:\Users\garci\Documents\SUMSCS\Testing_Debugging\HW5-Cpp_MemoryLeak-start\Node.cpp(45): warning C4715: 'searchNode': not all control paths return a value
+C:\Users\garci\Documents\SUMSCS\Testing_Debugging\HW5-Cpp_MemoryLeak-start\Cpp-LinkedList-Sample.cpp(53): error C4703: potentially uninitialized local pointer variable 'ptrDelete' used
+  All 21 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+LINK : fatal error LNK1257: code generation failed

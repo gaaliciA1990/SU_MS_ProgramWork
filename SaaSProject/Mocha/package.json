@@ -1,0 +1,17 @@
+{
+  "name": "mochatest",
+  "version": "1.0.0",
+  "description": "Some mocha tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec test/"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.2.3",
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
+    "mocha": "^10.0.0"
+  }
+}

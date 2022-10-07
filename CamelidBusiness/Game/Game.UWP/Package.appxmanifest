@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  IgnorableNamespaces="uap mp">
+
+  <Identity
+    Name="cf590357-2672-4b48-9b7c-1ee78ec090d6"
+    Publisher="CN=478e2de8-9f41-45ea-9c5c-185091c91d80"
+    Version="1.0.0.0" />
+
+  <mp:PhoneIdentity PhoneProductId="ec0cc741-fd3e-485c-81be-68815c480690" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+
+  <Properties>
+    <DisplayName>CamelidBusiness</DisplayName>
+    <PublisherDisplayName>478e2de8-9f41-45ea-9c5c-185091c91d80</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="x-generate"/>
+  </Resources>
+
+  <Applications>
+    <Application Id="App"
+      Executable="$targetnametoken$.exe"
+      EntryPoint="Game.UWP.App">
+      <uap:VisualElements
+        DisplayName="Camelid Business"
+        Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png"
+        Description="The ultimate battle for survival for three camelids of the Americas. The three clans, Alpacas, Llamas, and Vicuñas have lived peacefully for centuries, cooperating with each other to forage for food, build their civilizations and maintain peace in the Andes. This peace is broken when an attack on each of the clans occurs at the hands of a gang of monsters, Ocelots and Culpeos, who declare war on the three clans in the name of their Great Leader. The clans survive the monster’s attack but are promised more battles and more monsters to come. To ensure their survival, the three clans must band together to fight off the attackers and bring peace back to their lives. Six champions are selected, one from each clan, to lead a battalion of warriors to push back the monsters and defeat the Great Leader. During their battles, they will encounter Culpeos, Coyotes, Ocelots, Pumas, Mountain Lions, and Bears. After 10 levels are completed, the Great Leader, Guanaco, a fellow Camelid appears to reveal themselves and their grudge on the three clans. Guanaco vows to continue sending his minions to defeat the three clans. Our heroes will need to continue the battle for peace"
+        BackgroundColor="transparent">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\LargeTile.png" Square71x71Logo="Assets\SmallTile.png" ShortName="Camelids">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="wide310x150Logo" />
+            <uap:ShowOn Tile="square310x310Logo" />
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\SplashScreen.png"  BackgroundColor="#4C3C48"/>
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscapeFlipped"/>
+          <uap:Rotation Preference="landscape"/></uap:InitialRotationPreference>
+        <uap:LockScreen BadgeLogo="Assets\BadgeLogo.png" Notification="badge"/>
+      </uap:VisualElements>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>

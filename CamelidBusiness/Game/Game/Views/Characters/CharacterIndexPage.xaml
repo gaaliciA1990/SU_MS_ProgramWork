@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Name="BrowseItemsPage"
+             x:Class="Game.Views.CharacterIndexPage"
+             Style="{StaticResource CRUDiStyle}"
+             Title="{Binding Title}">
+
+    <ContentPage.Content>
+        <StackLayout Style="{StaticResource OuterBoxStack}">
+            <StackLayout Orientation="Horizontal">
+                <ImageButton x:Name="BackButton"
+                             Source="icon_back.png"
+                             Clicked="Back_Clicked" 
+                             Style="{StaticResource NavigationButtonStyle}"/>
+
+                <Label HorizontalOptions="CenterAndExpand"
+                       Text="Character List Page"
+                       Style="{StaticResource HeaderStyle}"
+                       FontSize="Large" />
+
+                <ImageButton x:Name="CreateButton"
+                             Source="icon_add.png"
+                             Clicked="CreateCharacter_Clicked" 
+                             Style="{StaticResource NavigationButtonStyle}"/>
+            </StackLayout>
+
+            <ScrollView VerticalScrollBarVisibility="Always">
+                <FlexLayout x:Name="CharactersListView"
+                            BindableLayout.ItemsSource="{Binding Dataset}"
+                            Wrap="Wrap"
+                            Direction="Row"
+                            JustifyContent="SpaceEvenly">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HeightRequest="150">
+                                <Frame OutlineColor="Black"
+                                       Padding="1">
+                                    <Grid BackgroundColor="{StaticResource PrimaryBackgroundColor}">
+
+                                        <Frame Style="{StaticResource FlexCardImageFrame}">
+                                            <AbsoluteLayout IsClippedToBounds="True">
+                                                <Image x:Name="ImageLabel"
+                                                       Source="{Binding ImageURI}"
+                                                       Style="{StaticResource FlexCardImage}" />
+                                            </AbsoluteLayout>
+                                        </Frame>
+                                        <StackLayout Grid.Column="1"
+                                                     Grid.Row="0"
+                                                     Margin="0,10,10,10"
+                                                     Orientation="Vertical"
+                                                     VerticalOptions="CenterAndExpand">
+                                            <Frame Style="{StaticResource FlexIndexFrame}">
+                                                <Label x:Name="NameLabel"
+                                                       Text="{Binding Name}"
+                                                       Style="{StaticResource LabelStyle}" />
+                                            </Frame>
+
+                                            <Frame Style="{StaticResource FlexIndexFrame}">
+                                                <Grid HorizontalOptions="Center">
+                                                    <Image Grid.Row="0"
+                                                           Grid.Column="0"
+                                                           Source="{Binding Clan, StringFormat= '{0:G}clanlogo.png'}"
+                                                           WidthRequest="25"
+                                                           HeightRequest="25" />
+                                                    <Label Grid.Row="0"
+                                                           Grid.Column="1"
+                                                           x:Name="ClanLabel"
+                                                           Text="{Binding Clan}"
+                                                           Style="{StaticResource LabelStyle}"
+                                                           FontSize="Micro" />
+                                                </Grid>
+                                            </Frame>
+
+                                            <StackLayout Orientation="Horizontal">
+                                                <Frame Style="{StaticResource SmallFlexIndexFrame}">
+                                                    <Label x:Name="LevelLabel"
+                                                           Text="{Binding Path=Level, StringFormat='LVL {0:G}'}"
+                                                           Style="{StaticResource ValueStyleMicro}" />
+                                                </Frame>
+
+                                                <Frame Style="{StaticResource SmallFlexIndexFrame}">
+                                                    <Label x:Name="MaxHealthLabel"
+                                                           Text="{Binding Path=MaxHealth, StringFormat='HP {0:G}'}"
+                                                           Style="{StaticResource ValueStyleMicro}" />
+                                                </Frame>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+
+                                <ImageButton
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand"
+                                    Clicked="FlexCharacter_Clicked" CommandParameter="{Binding Id}"
+                                />
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

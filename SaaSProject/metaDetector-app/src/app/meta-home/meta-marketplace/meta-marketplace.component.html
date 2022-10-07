@@ -1,0 +1,64 @@
+<!-- <div class="container-fluid">
+<div id="home">
+    <div class="popular-metaverses">
+    <h1 class="table-heading">Popular Metaverses</h1>
+    <p>Top purchases</p>
+    <table class="table table-striped">
+        <thead>
+          <tr class="table-color-1">
+            <th scope="col">#</th>
+            <th scope="col">Metaverses</th>
+            <th scope="col">Sales in last day</th>
+            <th scope="col">Sales in last 7 days</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-color">
+            <th scope="row">1</th>
+            <td>The Sandbox</td>
+            <td>$19,61,50,467.38</td>
+            <td>$3,44,44,51,390.33</td>
+          </tr>
+          <tr class="table-color">
+            <th scope="row">2</th>
+            <td>Decentraland</td>
+            <td>$3,76,99,083.15</td>
+            <td>$44,95,21,042.33</td>
+          </tr>
+          <tr class="table-color">
+            <th scope="row">3</th>
+            <td>Somnium Space</td>
+            <td>$2,26,05,718.90</td>
+            <td>$37,55,54,107.58</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+</div> -->
+
+
+<div class="container-fluid">
+  <div class="popular-metaverses">
+    <h1 class="table-heading">Popular Metaverses</h1>
+    <p><b>Top purchases</b></p>
+    <table class="table table-hover">
+      <thead>
+      <tr class="table-color-1">
+        <th scope="col">#</th>
+        <th scope="col">Metaverses</th>
+        <th scope="col">Sales in last day</th>
+        <th scope="col">Sales in last 7 days</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of results; index as i" class="table-color">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ item.metaverse }}</td>
+        <td>{{ item.salesLastDay }}</td>
+        <td>{{ item.salesLastWeek }}</td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+</div>

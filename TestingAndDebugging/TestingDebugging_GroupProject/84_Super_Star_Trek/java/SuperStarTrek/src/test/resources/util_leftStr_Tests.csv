@@ -1,0 +1,6 @@
+input, len, expectedResult
+"", 3, ""
+"Hi", 3, "Hi"
+"Len is negative bro", -3, "Len is negative bro"
+, 3,
+"test", 3, "tes"

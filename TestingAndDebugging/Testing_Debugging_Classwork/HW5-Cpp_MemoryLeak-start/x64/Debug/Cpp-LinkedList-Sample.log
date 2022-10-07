@@ -1,0 +1,3 @@
+﻿  Node.cpp
+C:\Users\garci\Documents\SUMSCS\Testing_Debugging\HW5-Cpp_MemoryLeak-start\Node.cpp(45): warning C4715: 'searchNode': not all control paths return a value
+  Cpp-LinkedList-Sample.vcxproj -> C:\Users\garci\Documents\SUMSCS\Testing_Debugging\HW5-Cpp_MemoryLeak-start\x64\Debug\Cpp-LinkedList-Sample.exe

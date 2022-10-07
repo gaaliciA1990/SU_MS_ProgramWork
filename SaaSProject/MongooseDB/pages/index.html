@@ -1,0 +1,166 @@
+<html>
+	<head> 
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+		<link rel="stylesheet" href="./style.css"/>
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+	</head>
+	</head>
+	<body onload="initXHR('home', null)">
+		<div class="container">
+
+		  <!-- Static navbar -->
+		  <nav class="navbar navbar-default">
+			<div class="container-fluid">
+			  <div class="navbar-header">
+				<a class="navbar-brand" href="javascript:initXHR('home', null)">MetaDetector</a>
+			  </div>
+			  <div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+				  <li><a href="#">About</a></li>
+				  <li><a href="#">Services</a></li>
+				  <li><a href="#">Market-Tracker</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+				  <li><a href="#">Login</a></li>
+				</ul>
+			  </div><!--/.nav-collapse -->
+			</div><!--/.container-fluid -->
+		  </nav>
+		  
+		<div id="home">
+		  <!-- Main component for a primary marketing message or call to action -->
+		  <div class="Twitter-feed">
+			<h1>Meta-Twitter Feed</h1>
+			<p>Real Estate Posts</p>
+			<p>
+				<div class="row">
+					<div class="col-xs-3">
+						<div class="well">
+							<h3>Tweet 1</h3>
+						</div>
+					</div>
+					<div class="col-xs-3">
+						<div class="well">
+							<h3>Tweet 2</h3>
+						</div>
+					</div>
+					<div class="col-xs-3">
+						<div class="well">
+							<h3>Tweet 3</h3>
+						</div>
+					</div>
+					<div class="col-xs-3">
+						<div class="well">
+							<h3>Tweet 4</h3>
+						</div>
+					</div>
+				</div>
+			</p>
+		  </div>
+		</div>
+		
+		<div id="lists" style="display:none;">
+		</div>
+
+		<div id="home">
+		<div class="popular-metaverses">
+		<h1>Popular Metaverses</h1>
+		<p>Top purchases</p>
+		<table class="table table-striped">
+			<thead>
+			  <tr>
+				<th scope="col">#</th>
+				<th scope="col">Metaverses</th>
+				<th scope="col">Sales in last day</th>
+				<th scope="col">Sales in last 7 days</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+				<th scope="row">1</th>
+				<td>The Sandbox</td>
+				<td>$19,61,50,467.38</td>
+				<td>$3,44,44,51,390.33</td>
+			  </tr>
+			  <tr>
+				<th scope="row">2</th>
+				<td>Decentraland</td>
+				<td>$3,76,99,083.15</td>
+				<td>$44,95,21,042.33</td>
+			  </tr>
+			  <tr>
+				<th scope="row">3</th>
+				<td>Somnium Space</td>
+				<td>$2,26,05,718.90</td>
+				<td>$37,55,54,107.58</td>
+			  </tr>
+			</tbody>
+		  </table>
+		</div>
+	</div>
+
+
+		<div class="container-fluid">
+			<h2>Metaverses</h2>
+			<div class="row">
+				<div class="col-xs-3">
+					<div class="well">
+						<h3>Decentraland</h3>
+					</div>
+				</div>
+				<div class="col-xs-3">
+					<div class="well">
+						<h3>Sandbox</h3>
+					</div>
+				</div>
+				<div class="col-xs-3">
+					<div class="well">
+						<h3>Cryptovox</h3>
+					</div>
+				</div>
+				<div class="col-xs-3">
+					<div class="well">
+						<h3>Axie Infitiy</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid">
+			<h2>Due Diligence</h2>
+			<div class="row">
+				<div class="col-xs-3">
+					<div class="well" onclick="displayBuyerSellerInfo(true);">
+						<h3>Buyer Info</h3>
+						<p>Learn more about purchasing virtual land in the metaverse</p>
+					</div>
+				</div>
+				<div class="col-xs-3">
+					<div class="well" onclick="displayBuyerSellerInfo(false);">
+						<h3>Seller Info</h3>
+						<p>Learn more about selling virtual land in the metaverse</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</div>
+		
+ <!-- /container -->
+	
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="/script.js"></script>
+</body>
+</html>

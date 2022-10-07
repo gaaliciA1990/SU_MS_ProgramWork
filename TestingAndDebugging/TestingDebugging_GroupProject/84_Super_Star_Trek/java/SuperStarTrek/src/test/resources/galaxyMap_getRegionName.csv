@@ -1,0 +1,12 @@
+Y, expectedResult
+3, " IV"
+2, " III"
+1, " II"
+4, " I"
+0, " I"
+5, " II"
+6, " III"
+7, " IV"
+8, " I"
+9, " II"
+-1, ""

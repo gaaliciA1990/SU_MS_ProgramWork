@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Game.Views.VillagePage"
+             BackgroundImageSource="villagePage_background.png">
+
+    <ContentPage.Content>
+        <StackLayout Style="{StaticResource OuterBoxStack}"
+                     VerticalOptions="FillAndExpand">
+            <StackLayout Orientation="Horizontal">
+                <ImageButton x:Name="HomeButton"
+                             Source="icon_home.png"
+                             Clicked="HomeButton_Clicked"
+                             Style="{StaticResource NavigationButtonStyle}" />
+            </StackLayout>
+
+            <ScrollView Orientation="Vertical"
+                        HorizontalScrollBarVisibility="Never"
+                        VerticalScrollBarVisibility="Never"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="CenterAndExpand">
+
+                <Grid VerticalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Style="{StaticResource CardImageTextBox}"
+                                 VerticalOptions="Start"
+                                 Grid.Row="0"
+                                 Grid.Column="0">
+
+                        <ImageButton Source="characters.png"
+                                     Style="{StaticResource ImageLargeStyle}"
+                                     Clicked="CharactersButton_Clicked" />
+
+                        <Label Text="Characters"
+                               Style="{StaticResource CenterMessageStyle}" />
+
+                    </StackLayout>
+
+                    <StackLayout Style="{StaticResource CardImageTextBox}"
+                                 VerticalOptions="Center"
+                                 Grid.Row="0"
+                                 Grid.Column="1">
+
+                        <ImageButton Source="monsters.png"
+                                     Style="{StaticResource ImageLargeStyle}"
+                                     Clicked="MonstersButton_Clicked" />
+
+                        <Label Text="Monsters"
+                               Style="{StaticResource CenterMessageStyle}" />
+
+                    </StackLayout>
+
+
+                    <StackLayout Style="{StaticResource CardImageTextBox}"
+                                 VerticalOptions="Start"
+                                 Grid.Row="0"
+                                 Grid.Column="2">
+
+                        <ImageButton Source="items.png"
+                                     Style="{StaticResource ImageLargeStyle}"
+                                     Clicked="ItemsButton_Clicked" />
+
+                        <Label Text="Items"
+                               Style="{StaticResource CenterMessageStyle}" />
+                    </StackLayout>
+
+
+                    <StackLayout Style="{StaticResource CardImageTextBox}"
+                                 VerticalOptions="Center"
+                                 Grid.Row="0"
+                                 Grid.Column="3">
+
+                        <ImageButton Source="score.png"
+                                     Style="{StaticResource ImageLargeStyle}"
+                                     Clicked="ScoresButton_Clicked" />
+
+                        <Label Text="Scores"
+                               Style="{StaticResource CenterMessageStyle}" />
+
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,19 @@
+h3 {
+    text-align: center;
+}
+
+.row > .col-xs-3 {
+    display:flex;
+    flex: 0 0 25%;
+    max-width: 25%
+}
+
+.well {
+    min-height: 300px;
+    width: 100%;
+}
+
+.popular-metaverses{
+    
+    max-width: 80%;
+}

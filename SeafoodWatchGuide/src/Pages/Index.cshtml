@@ -1,0 +1,40 @@
+﻿@page
+@using ContosoCrafts.WebSite.Components
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<body id="mainPageBody">
+    <div class="text-body navbar-expand-sm navbar-toggleable-sm">
+        <a href="/"><img src="~/imgs/SeafoodWatchGuideLogoWebBanner.png" class="logo-img" /></a>
+        <div id="text-wrapper">
+            <h4>
+                Welcome to the Seafood Guide, your one stop shop to find your region's guide for sustainable seafood. Below, you can select your region to view the guide to help you make sustainable decisions
+                while purchasing your seafood. The website is designed to make it easier to view the information in one location and have it readily available in an instant. Go ahead! Give it a try!
+                <br /><br />You can also find more information in our navigation bar above to explain how the website works and more about our team. Thank you for visiting!
+            </h4>
+            <!---This is the region select dropdown for navigating to the correct guide. Each dropdown option will link to a new page-->
+            <div id="form-wrapper" class="text-center">
+                <h5>Select your guide from the dropdown</h5> <!---TODO: Add style to the text and center into one line-->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Region
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button class="dropdown-item" type="button"><a class="nav-link text-dark" asp-page="Region" asp-route-region='@("West Coast")'>West Coast</a></button>
+                        <button class="dropdown-item" type="button"><a class="nav-link text-dark" asp-page="Region" asp-route-region='@("Southwest")'>Southwest</a></button>
+                        <button class="dropdown-item" type="button"><a class="nav-link text-dark" asp-page="Region" asp-route-region='@("Central")'>Central</a></button>
+                        <button class="dropdown-item" type="button"><a class="nav-link text-dark" asp-page="Region" asp-route-region='@("Southeast")'>Southeast</a></button>
+                        <button class="dropdown-item" type="button"><a class="nav-link text-dark" asp-page="Region" asp-route-region='@("Northeast")'>Northeast</a></button>
+                        <button class="dropdown-item" type="button"><a class="nav-link text-dark" asp-page="Region" asp-route-region='@("Hawaii")'>Hawai'i</a></button>
+                        <button class="dropdown-item" type="button"><a class="nav-link text-dark" asp-page="Region" asp-route-region='@("National")'>National</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script src="_framework/blazor.server.js"></script>

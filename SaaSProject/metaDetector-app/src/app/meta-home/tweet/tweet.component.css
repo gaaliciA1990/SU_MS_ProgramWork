@@ -1,0 +1,29 @@
+.container-fluid{
+   /* background-color: black; */
+    padding: 60px;
+}
+.tweet-cards-wrappers{
+    display: inline-flex;
+    justify-content: center;
+    /*background-color:blue;*/
+    /*background-image: url('https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2012/06/06/47707665-twitter-bird-white-on-blue.1910x1000.jpg');*/
+}
+
+.card{
+    width: 50%;
+    border-style:solid;
+    border-color: #0b343c;
+    color: #0b343c;
+    background-color:#ffffff;
+}
+
+.twitter-heading{
+    color: #0b343c;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    background-color: #104b57;
+}

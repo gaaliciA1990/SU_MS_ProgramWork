@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Name="BrowseItemsPage"
+             x:Class="Game.Views.MonsterIndexPage"
+             Style="{StaticResource CRUDiStyle}"
+             Title="{Binding Title}">
+
+    <ContentPage.Content>
+        <StackLayout Style="{StaticResource OuterBoxStack}">
+            <StackLayout Orientation="Horizontal">
+                <ImageButton x:Name="BackButton"
+                             Source="icon_back.png"
+                             Clicked="Back_Clicked"
+                             Style="{StaticResource NavigationButtonStyle}" />
+
+                <Label HorizontalOptions="CenterAndExpand"
+                       Text="Monster List Page"
+                       Style="{StaticResource HeaderStyle}"
+                       FontSize="Large" />
+
+                <ImageButton x:Name="CreateButton"
+                             Source="icon_add.png"
+                             Clicked="CreateMonster_Clicked"
+                             Style="{StaticResource NavigationButtonStyle}"/>
+            </StackLayout>
+
+            <ScrollView VerticalScrollBarVisibility="Always">
+                <FlexLayout x:Name="MonstersListView"
+                            BindableLayout.ItemsSource="{Binding Dataset}"
+                            Wrap="Wrap"
+                            Direction="Row"
+                            JustifyContent="SpaceEvenly">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HeightRequest="150">
+                                <Frame OutlineColor="Black"
+                                       Padding="1">
+                                    <Grid BackgroundColor="{StaticResource PrimaryBackgroundColor}">
+
+                                        <Frame Style="{StaticResource FlexCardImageFrame}">
+                                            <Image x:Name="ImageLabel"
+                                                   Source="{Binding ImageURI}"
+                                                   Style="{StaticResource FlexCardMonsterImage}" />
+                                        </Frame>
+                                        <StackLayout Grid.Column="1"
+                                                     Grid.Row="0"
+                                                     Margin="0,10,10,10"
+                                                     Orientation="Vertical"
+                                                     VerticalOptions="CenterAndExpand">
+                                            <Frame Style="{StaticResource FlexIndexFrame}">
+                                                <Label x:Name="NameLabel"
+                                                       Text="{Binding Name}"
+                                                       Style="{StaticResource CrudiLabelStyle}"
+                                                       TextColor="#FFFF"/>
+                                            </Frame>
+
+                                            <Frame Style="{StaticResource FlexIndexFrame}">
+                                                <Label x:Name="DifficultyLabel"
+                                                       Text="{Binding Difficulty}"
+                                                       Style="{StaticResource CrudiLabelStyle}"
+                                                       TextColor="#FFFF"/>
+                                            </Frame>
+
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                                <ImageButton
+                                            Grid.Column="0"
+                                            Grid.Row="0"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="FillAndExpand"
+                                            Clicked="FlexMonster_Clicked" CommandParameter="{Binding Id}"
+                                        />
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

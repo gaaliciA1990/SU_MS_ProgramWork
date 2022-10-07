@@ -1,0 +1,57 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy Node.js app to Azure Web App - meta-detector
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js version
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - name: npm install, build, and test
+        run: |
+          cd MongooseDB
+          npm install
+          npm run build --if-present
+          npm run test --if-present
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v2
+        with:
+          name: node-app
+          path: ${{ github.workspace }}/MongooseDB
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: node-app
+
+      - name: 'Deploy to Azure Web App'
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'metadetector'
+          slot-name: 'Production'
+          publish-profile: '<publishData><publishProfile profileName="metadetector - Web Deploy" publishMethod="MSDeploy" publishUrl="metadetector.scm.azurewebsites.net:443" msdeploySite="metadetector" userName="$metadetector" userPWD="zgh9nQDfoidQf1vwzcwtvn2sXwxHewg3GemR4bbcG65JobZbbn6t1uMfblsb" destinationAppUrl="http://metadetector.azurewebsites.net" SQLServerDBConnectionString="" mySQLDBConnectionString="" hostingProviderForumLink="" controlPanelLink="http://windows.azure.com" webSystem="WebSites"><databases /></publishProfile><publishProfile profileName="metadetector - FTP" publishMethod="FTP" publishUrl="ftp://waws-prod-bay-193.ftp.azurewebsites.windows.net/site/wwwroot" ftpPassiveMode="True" userName="metadetector\$metadetector" userPWD="zgh9nQDfoidQf1vwzcwtvn2sXwxHewg3GemR4bbcG65JobZbbn6t1uMfblsb" destinationAppUrl="http://metadetector.azurewebsites.net" SQLServerDBConnectionString="" mySQLDBConnectionString="" hostingProviderForumLink="" controlPanelLink="http://windows.azure.com" webSystem="WebSites"><databases /></publishProfile><publishProfile profileName="metadetector - Zip Deploy" publishMethod="ZipDeploy" publishUrl="metadetector.scm.azurewebsites.net:443" userName="$metadetector" userPWD="zgh9nQDfoidQf1vwzcwtvn2sXwxHewg3GemR4bbcG65JobZbbn6t1uMfblsb" destinationAppUrl="http://metadetector.azurewebsites.net" SQLServerDBConnectionString="" mySQLDBConnectionString="" hostingProviderForumLink="" controlPanelLink="http://windows.azure.com" webSystem="WebSites"><databases /></publishProfile></publishData>'
+          package: .

@@ -1,0 +1,66 @@
+<div class="container-fluid">
+
+    <h1>{{this.title}}</h1>
+
+    <div id="{{this.tileType}}-controls" class="carousel slide" data-ride="carousel" data-interval="false">
+
+        <div class="carousel-inner">
+
+            <div class="carousel-item" *ngFor="let estateList of listOfEstateLists; let isFirst = first"
+                [ngClass]="{active: isFirst}">
+
+                <div class="cards-wrapper">
+
+                    <div class="card" *ngFor="let estate of estateList">
+                        <img src="{{getEstateMap(estate.estateId)}}" class="card-img-top" alt="...">
+
+                        <div class="card-body">
+
+                            <h3 class="card-title">Estate ID: {{estate.estateId}}</h3>
+
+                            <p class="card-subtitle"><b>Estate Name:</b> </p>
+
+                            <div>
+                                <p class="card-subtitle"*ngIf="estate.name != null; else printUnnamed">
+                                    {{estate.name}}
+                                </p>
+                                <ng-template #printUnnamed>
+                                    <p class="card-subtitle">
+                                        Unnamed
+                                    </p>
+                                </ng-template>
+                            </div>
+
+                            <div>
+                                <div *ngIf="estate.price == null">
+                                    <p class="card-text">
+                                        <b>Price:</b> No Price Listed
+                                    </p>
+                                </div>
+                                <div *ngIf="estate.price != null">
+                                    <p class="card-text">
+                                        <b>Price:</b> ${{estate.price}}<br>
+                                    </p>
+                                </div>
+                                <b>Updated Date:</b> {{convertToFormattedDate(estate.updatedAt)}}
+                            </div>
+                        </div>
+                        <a routerLink="estate/{{estate.estateId}}" class="btn btn-primary">View Parcels</a>
+                        <a (click)="markEstateAsFavorite(estate.estateId)" class="a-link-favorite" *ngIf="isLoggedIn"> Add to favorite </a>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+        <a class="carousel-control-prev" href="#{{this.tileType}}-controls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#{{this.tileType}}-controls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+﻿@page
+@using ContosoCrafts.WebSite.Components
+@model FeedbackPageModel
+@{
+    ViewData["Title"] = "Feedback page";
+}
+<link rel="stylesheet" href="~/css/site.css" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Display thank you message if the user just submitted a feedback-->
+@if (Model.displayThankYouMessage == true)
+{
+    <div>
+        <h1> <b> Thank you for submitting your feedback! <br>Click 'Done' to get redirected back to Home page.</b> </h1>
+        <a asp-page="./Index" class="btn btn-primary"> Done </a>
+    </div>
+}
+
+<!-- Otherwise, display the feedback form -->
+
+@if (Model.displayThankYouMessage == false)
+{
+
+    <div class="d-flex flex-row justify-content-center align-items-center">
+        <div>
+            <h1>Leave Feedback!</h1>
+        </div>
+        <p class="font-weight-bold">Submit your feedback for the website with a star rating and option comment! Your feedback helps us improve this site!</p>
+    </div>
+    <body>
+        <div class="text-body navbar-expand-sm navbar-toggleable-sm">
+            <a href="/"><img src="~/imgs/SeafoodWatchGuideLogoWebBanner.png" class="logo-img" /></a>
+        </div>
+    </body>
+    <div class="clear"> <br><br></div>
+
+    <div class="container">
+        <h3><u>Our latest feedbacks</u> </h3>
+        @{
+            int numFeed = 0;
+            foreach (var feed in Model.previewFeedBacks)
+            {
+                if (numFeed < 4)
+                {
+                <div class="row">
+                    @for (int i = 1; i < 6; i++)
+                    {
+                        var checkedText = "";
+
+                        if (i <= @feed.Rating)
+                        {
+                            checkedText = "checked";
+                        }
+                        <span class="fa fa-star @checkedText"></span>
+                    }
+                    <p> "@feed.Comment" </p>
+                </div>
+                    numFeed++;
+                }
+            }
+        }
+
+    </div>
+    <div class="clear"> <br><br></div>
+
+    <h2>We want to hear from you!</h2>
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            <label>Give us a rating</label>
+            <div class="rating">
+                @{
+                    for (int i = 5; i > 0; i--)
+                    {
+                        string label = "star" + i;
+                        <input id="@label" type="radio" required asp-for="Feedback.Rating" value="@i" class="radio-btn hide" />
+                        <label for="@label">☆</label>
+                    }
+                }
+                <div class="clear"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="feed_back">Comment Description</label> <br>
+            <input class="form-control" type="text" asp-for="Feedback.Comment" placeholder="Start typing to tell us how you feel :)">
+        </div>
+
+        <input class="btn btn-primary" type="submit" id="Submit">
+    }
+}

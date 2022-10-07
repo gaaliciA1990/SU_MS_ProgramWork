@@ -1,0 +1,9 @@
+input, start, len, expectedResult
+"Negative start value dude", -6, 3, "Negative start value dude"
+"Negative len value is unacceptable!", 6, -3, "Negative len value is unacceptable!"
+"", 5, 3, ""
+"Whathappened?", 5, 3, "hap"
+"This is not a test", 8, 3, " no"
+"Hie#'@!?*$)", 6, 3, "@!?"
+, 5, 3,
+"Hi", 1, 3, "Hi"

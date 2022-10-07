@@ -1,0 +1,7 @@
+# azure deployment
+createDB/
+curlCommands/
+dbCommands/
+e2e/
+node_modules/
+db/

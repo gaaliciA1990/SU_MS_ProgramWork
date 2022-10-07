@@ -1,0 +1,13 @@
+.container-fluid{
+    padding-left: 85px;
+    
+}
+
+.dd-heading{
+    color: #0b343c;
+    padding-bottom: 20px;
+}
+
+.card-body{
+    border-color: #0b343c;
+}

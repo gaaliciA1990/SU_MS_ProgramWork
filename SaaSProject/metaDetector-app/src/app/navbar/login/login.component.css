@@ -1,0 +1,30 @@
+.a-link{
+    color:#16697a;
+}
+
+.header{
+    color: aliceblue;
+}
+
+.button {
+    background-color: goldenrod; /* Green */
+    border: 1px, white;
+    color: white;
+    padding: 10px 29px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+  .logout-button {
+    background-color: goldenrod; /* Green */
+    border: 1px, white;
+    color: white;
+    padding: 10px 29px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    float: right;
+  }

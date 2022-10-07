@@ -1,0 +1,15 @@
+.container{
+    background-color:#ffffff;
+}
+
+.navbar-header{
+    padding: 10px;
+}
+
+.navbar-brand{
+    color: #16697a;
+}
+
+.nav-link{
+    color:#16697a;
+}
