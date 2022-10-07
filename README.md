@@ -11,6 +11,8 @@ A team project for Mobile Software Development, this game is a turn based Raid C
 
 Primary Language: C#
 
+Contributors: [Avery Dihn](https://github.com/khometit), [Carlo Provenzani](https://github.com/cprovenzani)
+
 ## Software Architecture and Design - Image Processor Project
 A simple Image Processor API that accepts a byte array image and can transform the image by any combination of the following using a stateless design. 
 
@@ -21,10 +23,15 @@ Full stack group project for creatinga software service. Metadetector is a servi
 
 Primary Language: Typescript/Javascript
 
+Contributors: [Avery Dihn](https://github.com/khometit), [Francis Kogge](https://github.com/fkogge), [Prajakta Bimalkhedkar](https://github.com/PrajaktaB27)
+
 ## Fundamentals of Software Engineering - Seafood Watch Guide Website
 A website that was based on the Contoso Crafts template and developed further to reimagine the Seafood Watch Guide pdfs on Monterey Bay Aquariums website.
 
 Primary Language: C#
+
+Contributors: [Avery Dihn](https://github.com/khometit), [Carlo Provenzani](https://github.com/cprovenzani), Xie Zhoujing
+
 
 ## Testing and Debugging
 A compilation of the class work assignments and our group project. 
@@ -33,6 +40,8 @@ A compilation of the class work assignments and our group project.
 Implemented tests for an open source project, SuperStarTrek game, from the https://github.com/coding-horror/basic-computer-games open source repo.
 
 Primary Language: Java
+
+Contributors: Sanchita Jain, Mustafa Abuthuraya
 
 ## Classwork
 A compilation of coding assignments worked on in Testing and Debugging, highlighting TDD, managing memory leaks, and more. 
