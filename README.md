@@ -1,5 +1,5 @@
-# SU_MS_ProgramWork
-All of the project and class work from my master's program in CS from Seattle University. All projects have detailed ReadMe files. Below is a brief intro to each.
+# Seattle University Master's of Science in Computer Science Program Work
+All of the project and class work from my master's program in CS, with a specialization in Software Engineering, from Seattle University. Most projects have detailed ReadMe files and below are brief intros to each project.
 
 ## Artifical Intelligence
 PacMan Project building up from basic level searches (DFS, BFS, ect) to Multi-Agent Searches, to Reinforced Learning.
